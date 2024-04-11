@@ -127,7 +127,7 @@ def learnLTparams(oldParams, infRes, experiment, CdOptimMethod, CdMaxIter=None, 
         args = (xdim, ydim, experiment, infRes),
         jac = MStepObservationCost_grad,
         method = CdOptimMethod,
-        options = {'disp': verbose, 'maxiter':CdMaxIter})
+        options = {'disp': verbose, 'maxiter' if CdOptimMethod != 'TNC' else 'maxfun': CdMaxIter})
 
     if resCd.success==True & verbose:
         print('Cd optimization successful.')
